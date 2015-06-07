@@ -1,0 +1,46 @@
+{
+  "name": "backbone-lottery",
+  "version": "1.0.0",
+  "description": "Backbone Lottery",
+  "private": true,
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "backbone": "^1.1.2",
+    "backbone.marionette": "^1.6.3",
+    "bootstrap": "^3.3.4",
+    "browserify": "^10.2.3",
+    "browserify-shim": "^3.8.8",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-jshint": "^1.11.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.5",
+    "handlebars": "^3.0.3",
+    "hbsfy": "^2.2.1",
+    "jquery": "^2.1.4",
+    "numeral": "^1.5.3",
+    "serve": "^1.4.0",
+    "underscore": "^1.8.3"
+  },
+  "browser": {
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify-shim": {
+    "bootstrap": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maxime Gibeau",
+  "license": "MIT"
+}
