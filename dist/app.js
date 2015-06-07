@@ -2957,7 +2957,7 @@ App.addInitializer(function () {
 App.mainRegion.show(new MainView());
 App.stateRegion.show(new StateView());
 App.resultsRegion.show(new ResultsView());
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_65423625.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_3cf1f5d0.js","/")
 },{"./appData":15,"./views/main":31,"./views/results":36,"./views/state":37,"1YiZ5S":4,"buffer":1}],21:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 module.exports = Backbone.Model.extend({});
@@ -2998,7 +2998,7 @@ module.exports = Backbone.Model.extend({});
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"form-inline\">\n    <div class=\"form-group\">\n        <label for=\"name\">Player Name: </label>\n        <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Bob\" data-ui-name>\n    </div>\n</div>\n\n<div class=\"vertical-spacing-top\">\n    <button class=\"btn btn-primary\" data-ui-buy>Purchase Ticket</button>\n    <button class=\"btn\" data-ui-draw>Draw numbers</button>\n    <button class=\"btn\" data-ui-results>Results</button>\n</div>\n\n<p class=\"vertical-spacing-top text-danger\" data-ui-error></p>";
+    return "<div class=\"form-inline\">\n    <div class=\"form-group\">\n        <label class=\"sr-only\" for=\"name\">Player Name: </label>\n        <div class=\"input-group\">\n            <div class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></div>\n            <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Bob\" data-ui-name>\n            <span class=\"input-group-btn\">\n                <button class=\"btn btn-primary\" data-ui-buy>Purchase Ticket</button>\n            </span>\n        </div>\n    </div>\n    <div class=\"pull-right\">\n        <button class=\"btn\" data-ui-draw>Draw numbers</button>\n        <button class=\"btn\" data-ui-results>Results</button>\n    </div>\n</div>\n\n<p class=\"vertical-spacing-top text-danger text-center error-message\" data-ui-error></p>";
 },"useData":true});
 
 }).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/templates/main.hbs","/templates")
@@ -3029,18 +3029,26 @@ module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+module.exports = HandlebarsCompiler.template({"1":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
-  return "<h2>"
-    + alias3(((helper = (helper = helpers.ordinal || (depth0 != null ? depth0.ordinal : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"ordinal","hash":{},"data":data}) : helper)))
-    + " Ball <span>("
-    + alias3(((helper = (helper = helpers.ballNumber || (depth0 != null ? depth0.ballNumber : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"ballNumber","hash":{},"data":data}) : helper)))
-    + ")</span></h2>\n<p>"
+  return "        <h3>"
     + alias3(((helper = (helper = helpers.playerName || (depth0 != null ? depth0.playerName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"playerName","hash":{},"data":data}) : helper)))
-    + "</p>\n<p>"
+    + "</h3>\n        <p>"
     + alias3(((helper = (helper = helpers.amount || (depth0 != null ? depth0.amount : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"amount","hash":{},"data":data}) : helper)))
-    + "</p>";
+    + "</p>\n";
+},"3":function(depth0,helpers,partials,data) {
+    return "        <small class=\"text-muted\">Waiting for results...</small>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    <h2 class=\"panel-title\">"
+    + alias3(((helper = (helper = helpers.ordinal || (depth0 != null ? depth0.ordinal : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"ordinal","hash":{},"data":data}) : helper)))
+    + " Ball <span class=\"badge pull-right\">"
+    + alias3(((helper = (helper = helpers.ballNumber || (depth0 != null ? depth0.ballNumber : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"ballNumber","hash":{},"data":data}) : helper)))
+    + "</span></h2>\n  </div>\n  <div class=\"panel-body text-center\">\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.playerName : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "  </div>\n</div>";
 },"useData":true});
 
 }).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/templates/resultItem.hbs","/templates")
@@ -3049,7 +3057,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"panel panel-default vertical-spacing-top\">\n    <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Current Pot: <strong><span data-ui-pot></span> $</strong></h3>\n    </div>\n    <div class=\"panel-body\" data-region-players></div>\n</div>";
+    return "<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Current Pot: <strong><span data-ui-pot></span> $</strong></h3>\n    </div>\n    <div class=\"panel-body\" data-region-players></div>\n</div>";
 },"useData":true});
 
 }).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/templates/state.hbs","/templates")
@@ -3243,6 +3251,8 @@ module.exports = Marionette.ItemView.extend({
 var ResultItemView = require('./resultItem');
 
 module.exports = Marionette.CollectionView.extend({
+    className: 'row',
+
     childView: ResultItemView,
 
     collection: AppData.results

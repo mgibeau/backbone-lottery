@@ -1,3 +1,13 @@
-<h2>{{ordinal}} Ball <span>({{ballNumber}})</span></h2>
-<p>{{playerName}}</p>
-<p>{{amount}}</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">{{ordinal}} Ball <span class="badge pull-right">{{ballNumber}}</span></h2>
+  </div>
+  <div class="panel-body text-center">
+    {{#if playerName}}
+        <h3>{{playerName}}</h3>
+        <p>{{amount}}</p>
+    {{else}}
+        <small class="text-muted">Waiting for results...</small>
+    {{/if}}
+  </div>
+</div>

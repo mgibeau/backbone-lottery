@@ -1,12 +1,20 @@
 var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	rename = require('gulp-rename'),
+	sass = require('gulp-sass'),
 	browserify = require('gulp-browserify'),
 	hbsfy = require("hbsfy"),
 	jshint = require('gulp-jshint');
 
 hbsfy.configure({
 	extensions: ['hbs']
+});
+
+gulp.task('sass', function () {
+  gulp.src('src/styles/**/*.scss')
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(rename('style.css'))
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('lint', function() {
@@ -27,6 +35,7 @@ gulp.task('browserify', ['lint'], function() {
 });
 
 gulp.task('watch', function() {
+	gulp.watch('src/styles/**/*.scss', ['sass']);
 	gulp.watch(['src/**/*.js', 'src/**/*.hbs'], ['browserify']);
 });
 
