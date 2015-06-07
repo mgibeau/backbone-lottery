@@ -3,8 +3,10 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	sass = require('gulp-sass'),
 	browserify = require('gulp-browserify'),
+	uglify = require('gulp-uglify'),
 	hbsfy = require("hbsfy"),
-	jshint = require('gulp-jshint');
+	jshint = require('gulp-jshint'),
+	mochaPhantomjs = require('gulp-mocha-phantomjs');
 
 hbsfy.configure({
 	extensions: ['hbs']
@@ -23,6 +25,18 @@ gulp.task('lint', function() {
 		.pipe(jshint.reporter('default'));
 });
 
+gulp.task('uglify', ['browserify'], function() {
+  return gulp.src('dist/app.js')
+    .pipe(uglify())
+    .pipe(rename('app.min.js'))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('test', ['browserify-test'], function() {
+  return gulp.src('test/index.html')
+    .pipe(mochaPhantomjs());
+});
+
 gulp.task('browserify', ['lint'], function() {
 	return gulp.src('src/index.js')
 		.pipe(browserify({
@@ -34,13 +48,21 @@ gulp.task('browserify', ['lint'], function() {
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('browserify-test', function() {
+	return gulp.src('test/index.js')
+		.pipe(browserify({
+			insertGlobals: true
+		}))
+        .on('error', gutil.log)
+		.pipe(rename('test.js'))
+		.pipe(gulp.dest('dist'));
+});
+
 gulp.task('watch', function() {
-	gulp.watch('src/styles/**/*.scss', ['sass']);
-	gulp.watch(['src/**/*.js', 'src/**/*.hbs'], ['browserify']);
+	// gulp.watch('test/**/*.js', ['test']);
+	gulp.watch(['src/**/*.js', 'src/**/*.hbs', 'src/styles/**/*.scss'], ['build']);
 });
 
-gulp.task('build', function() {
-	// do stuff with assets
-});
+gulp.task('build', ['sass', 'uglify']);
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['test', 'build', 'watch']);

@@ -1,3 +1,4 @@
+var $ = require('jQuery');
 var numeral = require('numeral');
 
 var Player = require('../models/player');

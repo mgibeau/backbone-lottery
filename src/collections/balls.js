@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 var Ball = require('../models/ball');
 
 module.exports = Backbone.Collection.extend({
